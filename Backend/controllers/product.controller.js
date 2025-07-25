@@ -29,10 +29,14 @@ export const updateQuantity = async (req, res, next) => {
   try {
     const { id } = req.params;
     const { quantity } = req.body;
-    await Product.findByIdAndUpdate(id, { quantity }, { new: true });
+    const product = await Product.findByIdAndUpdate(
+      id,
+      { quantity },
+      { new: true }
+    );
     res
       .status(200)
-      .json({ success: true, message: "Product Quantity updated" });
+      .json({ success: true, message: "Product Quantity updated", product });
   } catch (error) {
     next(error);
   }

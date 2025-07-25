@@ -61,7 +61,7 @@ export const login = async (req, res, next) => {
         httpOnly: true,
       })
       .status(201)
-      .json({ success: true, message: "user logged in" });
+      .json({ success: true, message: "user logged in", token });
   } catch (error) {
     console.log(error);
     next(error);
