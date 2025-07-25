@@ -27,7 +27,8 @@
 |--------|---------------------|-------------------------------------|
 | POST   | `/api/user/register` | User registration                  |
 | POST   | `/api/user/login`    | User login                         |
-| POST   | `/api/user/is-auth`    | User authenticated or not                         |
+| GET   | `/api/user/logout`    | User logout                         |
+| GET   | `/api/user/is-auth`    | User authenticated or not                         |
 | GET    | `/api/product/list`      | Fetch available product          |
 | POST   | `/api/product/add`        | Add a new product                     |
 | POST   | `/api/product/update/:id`        | updates the quantity of a new product                     |
