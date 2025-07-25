@@ -46,7 +46,7 @@ export const login = async (req, res, next) => {
     }
     const user = await User.findOne({ username });
     if (!user) {
-      return next(404, "User not found");
+      return next(errorHandler(404, "User not found"));
     }
 
     const isCorrectPassword = bcrypt.compareSync(password, user.password);
