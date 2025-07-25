@@ -22,6 +22,16 @@
    npm run dev
    ```
 
+## API Endpoints
+| Method | Endpoint            | Description                         |
+|--------|---------------------|-------------------------------------|
+| POST   | `/api/user/register` | User registration                  |
+| POST   | `/api/user/login`    | User login                         |
+| POST   | `/api/user/is-auth`    | User authenticated or not                         |
+| GET    | `/api/product/list`      | Fetch available product          |
+| POST   | `/api/product/add`        | Add a new product                     |
+| POST   | `/api/product/update/:id`        | updates the quantity of a new product                     |
+
 ## Repository
 The code for this project can be found here:
 [Repository](https://github.com/akash11-01/Inventory-Management-Tool)
