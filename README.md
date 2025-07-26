@@ -31,7 +31,7 @@
 | GET   | `/api/user/is-auth`    | User authenticated or not                         |
 | GET    | `/api/products/list`      | Fetch available product          |
 | POST   | `/api/products/add`        | Add a new product                     |
-| POST   | `/api/products/:id/quantity`        | Updates the quantity of a product                     |
+| PUT   | `/api/products/:id/quantity`        | Updates the quantity of a product                     |
 
 ## Repository
 The code for this project can be found here:
