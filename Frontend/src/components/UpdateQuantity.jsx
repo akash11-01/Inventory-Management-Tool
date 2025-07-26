@@ -14,7 +14,7 @@ export default function UpdateQuantity() {
   const handleClick = async () => {
     try {
       setLoading(true);
-      const res = await fetch(`/api/product/update/${id}`, {
+      const res = await fetch(`/api/products/update/${id}/quantity`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -19,9 +19,7 @@ export default function Dashboard() {
       <div className="bg-slate-800 h-screen w-[22%]">
         <div className="h-[11%] w-full flex justify-around items-center gap-2 border-b-2">
           <img
-            src={
-              "https://cdn.dribbble.com/userupload/4295953/file/original-38872e7c6200d615a8367b872b4e97bf.png?compress=1&resize=1200x900"
-            }
+            src={"https://www.pngall.com/wp-content/uploads/5/Profile.png"}
             alt="profile-pic"
             className="h-16 w-16 rounded-full "
           />

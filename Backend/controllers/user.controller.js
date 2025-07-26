@@ -5,9 +5,9 @@ import jwt from "jsonwebtoken";
 
 export const register = async (req, res, next) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, password } = req.body;
 
-    if (!username || !email || !password) {
+    if (!username || !password) {
       return next(errorHandler(400, "Fill all Details"));
     }
 
@@ -19,15 +19,14 @@ export const register = async (req, res, next) => {
     const hashedPassword = bcrypt.hashSync(password, 12);
     const user = await User.create({
       username,
-      email,
       password: hashedPassword,
     });
 
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    const access_token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
     res
-      .cookie("token", token, {
+      .cookie("access_token", access_token, {
         httpOnly: true,
       })
       .status(201)
@@ -53,17 +52,17 @@ export const login = async (req, res, next) => {
     if (!isCorrectPassword) {
       return next(errorHandler(400, "Invalid Credentials"));
     }
-    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    const access_token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
     res
-      .cookie("token", token, {
+      .cookie("access_token", access_token, {
         httpOnly: true,
       })
-      .status(201)
-      .json({ success: true, message: "user logged in", token });
+      .status(200)
+      .json({ success: true, message: "user logged in", access_token });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     next(error);
   }
 };

@@ -17,7 +17,7 @@ export default function Addproduct() {
     e.preventDefault();
     try {
       setLoading(true);
-      const res = await fetch("/api/product/add", {
+      const res = await fetch("/api/products/add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -56,6 +56,20 @@ export default function Addproduct() {
           placeholder="name"
           className="border p-3 rounded-lg"
           id="name"
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          placeholder="type"
+          className="border p-3 rounded-lg"
+          id="type"
+          onChange={handleChange}
+        />
+        <input
+          type="text"
+          placeholder="sku"
+          className="border p-3 rounded-lg"
+          id="sku"
           onChange={handleChange}
         />
         <input

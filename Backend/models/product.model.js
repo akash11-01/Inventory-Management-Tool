@@ -5,12 +5,20 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    image_url: [
-      {
-        type: String,
-        required: true,
-      },
-    ],
+    type: {
+      type: String,
+      required: true,
+    },
+    sku: {
+      type: String,
+      required: true,
+    },
+
+    image_url: {
+      type: String,
+      required: true,
+    },
+
     description: {
       type: String,
       required: true,
@@ -18,6 +26,7 @@ const productSchema = new mongoose.Schema(
     quantity: {
       type: Number,
       required: true,
+      set: (v) => Number(v),
     },
     price: {
       type: Number,

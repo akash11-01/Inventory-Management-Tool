@@ -5,14 +5,15 @@ import dotenv from "dotenv";
 dotenv.config({});
 
 export const authUser = async (req, res, next) => {
-  const { token } = req.cookies;
-
-  if (!token) {
+  const auth_header = req?.cookies?.access_token || req?.headers?.authorization;
+  const access_token = auth_header.split(" ")?.[1];
+  // console.log(access_token);
+  if (!access_token) {
     return next(errorHandler(400, "Invalid Credentials"));
   }
 
   try {
-    const decodeToken = jwt.verify(token, process.env.JWT_SECRET);
+    const decodeToken = jwt.verify(access_token, process.env.JWT_SECRET);
     if (decodeToken.id) {
       const dbUser = await User.findById(decodeToken.id);
       req.user = dbUser;

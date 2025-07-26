@@ -6,7 +6,7 @@ export default function GetProductList() {
   const [products, setProducts] = useState([]);
   const getProducts = async () => {
     try {
-      const res = await fetch("/api/product/list");
+      const res = await fetch("/api/products/list");
       const data = await res.json();
       if (data.success === true) {
         setProducts(data.products);

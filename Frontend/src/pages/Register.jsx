@@ -51,13 +51,6 @@ export default function Register() {
           onChange={handleChange}
         />
         <input
-          type="email"
-          placeholder="email"
-          className="border p-3 rounded-lg"
-          id="email"
-          onChange={handleChange}
-        />
-        <input
           type="password"
           placeholder="password"
           className="border p-3 rounded-lg"
