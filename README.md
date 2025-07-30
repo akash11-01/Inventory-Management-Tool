@@ -34,7 +34,7 @@ A full-stack web application for managing inventory with user authentication and
 
 4. **Access the application:**
 
-   - Frontend: http://localhost (port 80)
+   - Frontend: http://localhost:4000 (served through backend)
    - Backend API: http://localhost:4000
    - MongoDB: localhost:27017
 
@@ -126,15 +126,16 @@ docker-compose ps
 ```
 
 ## API Endpoints
-| Method | Endpoint            | Description                         |
-|--------|---------------------|-------------------------------------|
-| POST   | `/api/user/register` | User registration                  |
-| POST   | `/api/user/login`    | User login                         |
-| GET   | `/api/user/logout`    | User logout                         |
-| GET   | `/api/user/is-auth`    | User authenticated or not                         |
-| GET    | `/api/products/list`      | Fetch available product          |
-| POST   | `/api/products/add`        | Add a new product                     |
-| PUT   | `/api/products/:id/quantity`        | Updates the quantity of a product                     |
+
+| Method | Endpoint                     | Description                       |
+| ------ | ---------------------------- | --------------------------------- |
+| POST   | `/api/user/register`         | User registration                 |
+| POST   | `/api/user/login`            | User login                        |
+| GET    | `/api/user/logout`           | User logout                       |
+| GET    | `/api/user/is-auth`          | User authenticated or not         |
+| GET    | `/api/products/list`         | Fetch available product           |
+| POST   | `/api/products/add`          | Add a new product                 |
+| PUT    | `/api/products/:id/quantity` | Updates the quantity of a product |
 
 ## Repository
 
