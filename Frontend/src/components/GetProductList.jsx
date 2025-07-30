@@ -8,15 +8,15 @@ export default function GetProductList() {
     try {
       const res = await fetch("/api/products/list");
       const data = await res.json();
-      if (data.success === true) {
-        setProducts(data.products);
+      if (Array.isArray(data)) {
+        setProducts(data);
         return;
       }
     } catch (error) {
       return error.message;
     }
   };
-  //   console.log(products);
+  console.log(products);
   useEffect(() => {
     getProducts();
   }, []);

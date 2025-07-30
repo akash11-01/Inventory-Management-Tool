@@ -1,0 +1,55 @@
+version: "3.8"
+
+services:
+  # MongoDB Database
+  mongodb:
+    image: mongo:7.0
+    container_name: inventory-mongodb
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongodb_data:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - inventory-network
+
+  # Backend Application
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: inventory-backend
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: ${PORT}
+      MONGODB_URI: ${MONGODB_URI}
+      JWT_SECRET: ${JWT_SECRET}
+    ports:
+      - "${PORT:-4000}:${PORT:-4000}"
+    depends_on:
+      - mongodb
+    networks:
+      - inventory-network
+    # volumes:
+    #   - ./Backend:/app:ro
+    # Wait for MongoDB to be ready
+    command: >
+      sh -c "
+        echo 'Waiting for MongoDB to start...' &&
+        sleep 10 &&
+        node server.js
+      "
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  inventory-network:
+    driver: bridge

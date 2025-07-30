@@ -14,7 +14,7 @@ export default function ProductCard(props) {
         <img
           className="group-hover:scale-105 transition "
           src={
-            "https://pickystory.com/wp-content/uploads/2022/08/advantages-of-ecommerce-shopping-cart.png"
+            "https://tse1.mm.bing.net/th/id/OIP.oZIMloy6-bR85SyY8dw4kwHaDt?r=0&rs=1&pid=ImgDetMain&o=7&rm=3"
           }
           alt={props.name}
         />

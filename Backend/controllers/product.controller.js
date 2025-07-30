@@ -4,6 +4,16 @@ export const addProduct = async (req, res, next) => {
   try {
     const { name, type, sku, image_url, description, quantity, price } =
       req.body;
+    const existingProduct = await Product.findOne({
+      name: name,
+    });
+    if (existingProduct) {
+      return res.status(409).json({
+        success: false,
+        message: "Product already exists",
+        product_id: existingProduct?._id,
+      });
+    }
     const product = await Product.create({
       name,
       type,
@@ -22,7 +32,8 @@ export const addProduct = async (req, res, next) => {
 export const productList = async (req, res, next) => {
   try {
     const products = await Product.find();
-    res.status(200).json( products );
+    // res.status(200).json({ success: true, products });
+    res.status(200).json(products);
   } catch (error) {
     next(error);
   }
@@ -38,14 +49,12 @@ export const updateQuantity = async (req, res, next) => {
       { quantity },
       { new: true }
     );
-    res
-      .status(200)
-      .json({
-        success: true,
-        message: "Product Quantity updated",
-        product,
-        quantity,
-      });
+    res.status(200).json({
+      success: true,
+      message: "Product Quantity updated",
+      product,
+      quantity,
+    });
   } catch (error) {
     next(error);
   }

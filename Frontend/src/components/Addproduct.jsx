@@ -49,7 +49,8 @@ export default function Addproduct() {
           type="file"
           placeholder="Image"
           className="border p-3 rounded-lg"
-          id="image"
+          id="image_url"
+          onChange={handleChange}
         />
         <input
           type="text"

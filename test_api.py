@@ -71,16 +71,9 @@ def test_add_product(token):
         "price": 999.99  # Price
     }
     res = requests.post(f"{BASE_URL}/api/products/add", json=payload, headers={"Authorization": f"Bearer {token}"})
-    passed = res.status_code == 201
-    if passed:
-        print("Add Product: PASSED")
-        try:
-            return res.json().get("product_id")
-        except Exception:
-            return None
-    else:
-        print_result("Add Product", False, 201, res.status_code, payload, res.text)
-        return None
+    passed = res.status_code in [201, 409]
+    print_result("Add Product", passed, "201 or 409", res.status_code, payload, res.text)
+    return res.json().get("product_id") if passed else None
 
 def test_update_quantity(token, product_id, new_quantity):
     # """
@@ -150,7 +143,7 @@ def run_all_tests():
         print("Login failed. Skipping further tests.")
         return
     product_id = test_add_product(token)
-    if not product_id:
+    if not product_id:  
         print("Product creation failed. Skipping further tests.")
         return
     new_quantity = 15  # Change this to test different updated quantity

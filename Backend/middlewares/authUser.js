@@ -5,9 +5,12 @@ import dotenv from "dotenv";
 dotenv.config({});
 
 export const authUser = async (req, res, next) => {
-  const auth_header = req?.cookies?.access_token || req?.headers?.authorization;
-  const access_token = auth_header.split(" ")?.[1];
-  // console.log(access_token);
+  console.log(req.cookies);
+  const auth_header = req?.headers?.authorization;
+  const access_token = auth_header
+    ? auth_header.split(" ")[1]
+    : req.cookies?.access_token;
+  console.log(access_token);
   if (!access_token) {
     return next(errorHandler(400, "Invalid Credentials"));
   }

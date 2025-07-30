@@ -13,7 +13,7 @@ export const register = async (req, res, next) => {
 
     const isExistingUser = await User.findOne({ username: username });
     if (isExistingUser) {
-      return next(errorHandler(400, "User Already exist"));
+      return next(errorHandler(409, "User Already exist"));
     }
 
     const hashedPassword = bcrypt.hashSync(password, 12);

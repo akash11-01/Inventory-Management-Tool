@@ -33,7 +33,7 @@ export default function Register() {
       }
       setLoading(false);
       setError(null);
-      navigate("/login");
+      navigate("/");
     } catch (error) {
       setLoading(false);
       setError(error.message);

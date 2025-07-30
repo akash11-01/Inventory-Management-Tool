@@ -6,8 +6,10 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "http://localhost:4000",
+        // Use Docker Compose service name for backend in containerized environment
+        target: process.env.VITE_APP_BACKEND_URL || "http://localhost:4000",
         secure: false,
+        changeOrigin: true,
       },
     },
   },
