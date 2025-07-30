@@ -126,59 +126,15 @@ docker-compose ps
 ```
 
 ## API Endpoints
-
-| Method | Endpoint                     | Description                    |
-| ------ | ---------------------------- | ------------------------------ |
-| POST   | `/api/user/register`         | User registration              |
-| POST   | `/api/user/login`            | User login                     |
-| GET    | `/api/user/logout`           | User logout                    |
-| GET    | `/api/user/is-auth`          | Check if user is authenticated |
-| GET    | `/api/products/list`         | Fetch available products       |
-| POST   | `/api/products/add`          | Add a new product              |
-| PUT   | `/api/products/:id/quantity` | Update product quantity        |
-
-## Architecture
-
-- **Frontend**: React with Vite, served by Nginx
-- **Backend**: Node.js with Express
-- **Database**: MongoDB
-- **Containerization**: Docker & Docker Compose
-
-## Environment Variables
-
-All sensitive credentials are managed via the `.env` file:
-
-- `MONGO_INITDB_ROOT_USERNAME`: MongoDB admin username
-- `MONGO_INITDB_ROOT_PASSWORD`: MongoDB admin password
-- `MONGO_INITDB_DATABASE`: Initial database name
-- `PORT`: Backend server port
-- `MONGODB_URI`: Database connection string
-- `JWT_SECRET`: Secret key for JWT tokens
-- `BACKEND_URL`: Backend URL for frontend API calls
-
-## Troubleshooting
-
-### Port Conflicts
-
-If ports 80, 4000, or 27017 are in use, update the port mappings in `docker-compose.yml`
-
-### Database Issues
-
-Reset the database by removing Docker volumes:
-
-```bash
-docker-compose down -v
-```
-
-### Development Mode
-
-For hot-reload during development, run only MongoDB in Docker:
-
-```bash
-docker-compose up mongodb
-```
-
-Then run frontend and backend locally.
+| Method | Endpoint            | Description                         |
+|--------|---------------------|-------------------------------------|
+| POST   | `/api/user/register` | User registration                  |
+| POST   | `/api/user/login`    | User login                         |
+| GET   | `/api/user/logout`    | User logout                         |
+| GET   | `/api/user/is-auth`    | User authenticated or not                         |
+| GET    | `/api/products/list`      | Fetch available product          |
+| POST   | `/api/products/add`        | Add a new product                     |
+| PUT   | `/api/products/:id/quantity`        | Updates the quantity of a product                     |
 
 ## Repository
 
